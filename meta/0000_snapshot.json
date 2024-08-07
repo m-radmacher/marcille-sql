@@ -1,0 +1,698 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "a8f85da2-c0d6-4f81-beeb-b6de0de2e217",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "company": {
+      "name": "company",
+      "columns": {
+        "uid": {
+          "name": "uid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "gecko_id": {
+          "name": "gecko_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "internal__last_updated": {
+          "name": "internal__last_updated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "company_to_product": {
+      "name": "company_to_product",
+      "columns": {
+        "company_gecko_id": {
+          "name": "company_gecko_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "product_gecko_id": {
+          "name": "product_gecko_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "company_to_product_company_gecko_id_company_gecko_id_fk": {
+          "name": "company_to_product_company_gecko_id_company_gecko_id_fk",
+          "tableFrom": "company_to_product",
+          "tableTo": "company",
+          "columnsFrom": [
+            "company_gecko_id"
+          ],
+          "columnsTo": [
+            "gecko_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "company_to_product_product_gecko_id_product_gecko_id_fk": {
+          "name": "company_to_product_product_gecko_id_product_gecko_id_fk",
+          "tableFrom": "company_to_product",
+          "tableTo": "product",
+          "columnsFrom": [
+            "product_gecko_id"
+          ],
+          "columnsTo": [
+            "gecko_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "company_to_product_company_gecko_id_product_gecko_id_pk": {
+          "columns": [
+            "company_gecko_id",
+            "product_gecko_id"
+          ],
+          "name": "company_to_product_company_gecko_id_product_gecko_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "config": {
+      "name": "config",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "website_url": {
+          "name": "website_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "website_user": {
+          "name": "website_user",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "website_password": {
+          "name": "website_password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "event_category": {
+      "name": "event_category",
+      "columns": {
+        "uid": {
+          "name": "uid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "gecko_id": {
+          "name": "gecko_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "internal__last_updated": {
+          "name": "internal__last_updated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_category_uid_unique": {
+          "name": "event_category_uid_unique",
+          "columns": [
+            "uid"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "event": {
+      "name": "event",
+      "columns": {
+        "uid": {
+          "name": "uid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "gecko_id": {
+          "name": "gecko_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "endtime": {
+          "name": "endtime",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "event_date": {
+          "name": "event_date",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "free": {
+          "name": "free",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "hidden": {
+          "name": "hidden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "max_subscribers": {
+          "name": "max_subscribers",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "min_subscribers": {
+          "name": "min_subscribers",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "place": {
+          "name": "place",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "start_time": {
+          "name": "start_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "event_category": {
+          "name": "event_category",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "event_product": {
+          "name": "event_product",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "internal__last_updated": {
+          "name": "internal__last_updated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "event_event_category_event_category_uid_fk": {
+          "name": "event_event_category_event_category_uid_fk",
+          "tableFrom": "event",
+          "tableTo": "event_category",
+          "columnsFrom": [
+            "event_category"
+          ],
+          "columnsTo": [
+            "uid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_event_product_product_uid_fk": {
+          "name": "event_event_product_product_uid_fk",
+          "tableFrom": "event",
+          "tableTo": "product",
+          "columnsFrom": [
+            "event_product"
+          ],
+          "columnsTo": [
+            "uid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "newsletter": {
+      "name": "newsletter",
+      "columns": {
+        "uid": {
+          "name": "uid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "gecko_id": {
+          "name": "gecko_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "internal__last_updated": {
+          "name": "internal__last_updated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "product": {
+      "name": "product",
+      "columns": {
+        "uid": {
+          "name": "uid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "gecko_id": {
+          "name": "gecko_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "internal__last_updated": {
+          "name": "internal__last_updated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "product_uid_unique": {
+          "name": "product_uid_unique",
+          "columns": [
+            "uid"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "user_to_company": {
+      "name": "user_to_company",
+      "columns": {
+        "user_gecko_id": {
+          "name": "user_gecko_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "company_gecko_id": {
+          "name": "company_gecko_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_to_company_user_gecko_id_user_user_id_fk": {
+          "name": "user_to_company_user_gecko_id_user_user_id_fk",
+          "tableFrom": "user_to_company",
+          "tableTo": "user",
+          "columnsFrom": [
+            "user_gecko_id"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "user_to_company_company_gecko_id_company_gecko_id_fk": {
+          "name": "user_to_company_company_gecko_id_company_gecko_id_fk",
+          "tableFrom": "user_to_company",
+          "tableTo": "company",
+          "columnsFrom": [
+            "company_gecko_id"
+          ],
+          "columnsTo": [
+            "gecko_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "user_to_company_user_gecko_id_company_gecko_id_pk": {
+          "columns": [
+            "company_gecko_id",
+            "user_gecko_id"
+          ],
+          "name": "user_to_company_user_gecko_id_company_gecko_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "user_to_event": {
+      "name": "user_to_event",
+      "columns": {
+        "user_gecko_id": {
+          "name": "user_gecko_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "event_gecko_id": {
+          "name": "event_gecko_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_to_event_user_gecko_id_user_user_id_fk": {
+          "name": "user_to_event_user_gecko_id_user_user_id_fk",
+          "tableFrom": "user_to_event",
+          "tableTo": "user",
+          "columnsFrom": [
+            "user_gecko_id"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "user_to_event_event_gecko_id_event_gecko_id_fk": {
+          "name": "user_to_event_event_gecko_id_event_gecko_id_fk",
+          "tableFrom": "user_to_event",
+          "tableTo": "event",
+          "columnsFrom": [
+            "event_gecko_id"
+          ],
+          "columnsTo": [
+            "gecko_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "user_to_event_user_gecko_id_event_gecko_id_pk": {
+          "columns": [
+            "event_gecko_id",
+            "user_gecko_id"
+          ],
+          "name": "user_to_event_user_gecko_id_event_gecko_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "user_to_newsletter": {
+      "name": "user_to_newsletter",
+      "columns": {
+        "user_gecko_id": {
+          "name": "user_gecko_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "newsletter_gecko_id": {
+          "name": "newsletter_gecko_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_to_newsletter_user_gecko_id_user_user_id_fk": {
+          "name": "user_to_newsletter_user_gecko_id_user_user_id_fk",
+          "tableFrom": "user_to_newsletter",
+          "tableTo": "user",
+          "columnsFrom": [
+            "user_gecko_id"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "user_to_newsletter_newsletter_gecko_id_newsletter_gecko_id_fk": {
+          "name": "user_to_newsletter_newsletter_gecko_id_newsletter_gecko_id_fk",
+          "tableFrom": "user_to_newsletter",
+          "tableTo": "newsletter",
+          "columnsFrom": [
+            "newsletter_gecko_id"
+          ],
+          "columnsTo": [
+            "gecko_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "user_to_newsletter_user_gecko_id_newsletter_gecko_id_pk": {
+          "columns": [
+            "newsletter_gecko_id",
+            "user_gecko_id"
+          ],
+          "name": "user_to_newsletter_user_gecko_id_newsletter_gecko_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "user": {
+      "name": "user",
+      "columns": {
+        "uid": {
+          "name": "uid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "end_time": {
+          "name": "end_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "firm_id": {
+          "name": "firm_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "first_name": {
+          "name": "first_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "last_name": {
+          "name": "last_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "login_type": {
+          "name": "login_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "start_time": {
+          "name": "start_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "tstamp": {
+          "name": "tstamp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "username": {
+          "name": "username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "internal__last_updated": {
+          "name": "internal__last_updated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
