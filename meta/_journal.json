@@ -15,6 +15,13 @@
       "when": 1729696837961,
       "tag": "0001_cooing_molecule_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1739982796534,
+      "tag": "0002_awesome_starbolt",
+      "breakpoints": true
     }
   ]
 }
